@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "ostream": "cpp",
+        "new": "cpp",
+        "vector": "cpp",
+        "tuple": "cpp",
+        "map": "cpp",
+        "bitset": "cpp"
+    },
+    "git.ignoreLimitWarning": true
+}
