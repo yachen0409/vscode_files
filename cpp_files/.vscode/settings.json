@@ -9,7 +9,8 @@
         "map": "cpp",
         "bitset": "cpp",
         "span": "cpp",
-        "iterator": "cpp"
+        "iterator": "cpp",
+        "algorithm": "cpp"
     },
     "git.ignoreLimitWarning": true
 }

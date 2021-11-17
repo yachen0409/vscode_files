@@ -1,82 +1,76 @@
-//方法對但有bug
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include <set>
 #include <iterator>
+#include <queue>
+#include <map>
 using namespace std;
 int main(){
     cin.tie(0);
     cin.sync_with_stdio(0);
     long long q, N, C, time = 0;
     vector<long long>tasklist, processor;
-    set<pair<long long, long long>> position;
+    vector <vector<long long>> farposition;
+    map <long long, long long> tasktoprocessor;
+    vector<bool> taskincore;
+    vector<long long> everyprocesstimes;
+    priority_queue <pair<long long, long long>> fartable;  //(farest index in tasklist, processer num)
     cin >> N >> C >> q;
+    taskincore.resize(N+1, false);
     tasklist.resize(q);
+    everyprocesstimes.resize(N+1, 0);
+    farposition.resize(N+1);
+    for(auto a = farposition.begin(); a != farposition.end(); ++a){
+        a->push_back(0);
+    }
     processor.resize(C, 0);
-    for(long long i = 0; i < q; ++i){
+    bool outofcore = false;
+    long long zeroindex = 0;
+    for(long long i = 0; i < q; ++i){ //
         cin >> tasklist[i];
+        farposition[tasklist[i]].push_back(i);
+    }
+    for(long long i = 1; i <= N; ++i ){
+        farposition[i].push_back(q+1);
     }
     for(long long j = 0; j < q; ++j){
         long long task = tasklist[j];
         long long farestprocessornum;
-        // cout <<"task = "<< task << endl;
-        auto itfind0 = find(processor.begin(), processor.end(), 0);
-        auto itfindtask = find(processor.begin(), processor.end(), task);
-        // cout <<"itfind0=" << *itfind0 <<endl;
-        // cout <<"itfindtask=" << *itfindtask <<endl;
-        if(itfind0 != processor.end()){ //init_process exist
-            if(itfindtask == processor.end()){ //no task in processor now
-                // cout<<"no task in processor now"<<endl;
-                *itfind0 = task;
-                time++;
+        if(zeroindex == C && !outofcore){
+            outofcore = true;
+            for(auto a = processor.begin(); a != processor.end(); ++a){
+                fartable.push({farposition[*a][everyprocesstimes[*a]+1],   tasktoprocessor[*a]});
             }
         }
+        if(zeroindex < C){ //init_process exist
+            if(!taskincore[task]){ //no task in processor now
+                processor[zeroindex] = task;
+                tasktoprocessor[task] = zeroindex;
+                zeroindex++;
+                time++;
+            }    
+            taskincore[task] = true;
+            everyprocesstimes[task]++;
+        }
         else{
-            if(itfindtask == processor.end()){
-                // cout << "in !"<<endl;
-                position.clear();
-                for(long long k = 0; k < C; ++k){
-                    vector<long long>:: iterator ittempfind = find(tasklist.begin()+j+1, tasklist.end(), processor[k]);
-                    if(ittempfind == tasklist.end()){
-                        farestprocessornum = k;
-                        position.clear();
-                        break;
-                    }
-                    else{
-                        position.insert({ittempfind-tasklist.begin(), k});
-                    }
-                }
-                // cout <<"position: "<<endl;
-                // for(auto a = position.begin(); a != position.end(); ++a){
-                    // cout << a->first << " "<<a->second <<" ";
-                // }
-                if(!position.empty()){
-                    // cout<<"imhere"<<endl;
-                    // cout<<position.rbegin()->first << " "<< position.rbegin()->second<<endl;
-                    farestprocessornum = position.rbegin()->second;
-                    processor[farestprocessornum] = task;
-                    time++;
-                }
-                else{
-                    // cout << "im in"<<endl;
-                    processor[farestprocessornum] = task;
-                    time++;
-                }
+            if(!taskincore[task]){ //no task in processor now
+                taskincore[task] = true;
+                farestprocessornum = fartable.top().second;
+                fartable.pop();
+                tasktoprocessor[task] = farestprocessornum;
+                taskincore[processor[farestprocessornum]] = false;
+                processor[farestprocessornum] = task;
+                time++;
+                everyprocesstimes[task]++;
+                fartable.push({farposition[task][everyprocesstimes[task]+1], farestprocessornum});
+            }
+            else{
+                everyprocesstimes[task]++;
+                
+                fartable.push({farposition[task][everyprocesstimes[task]+1],  tasktoprocessor[task]});
             }
         }
     }
     cout << time;
     return 0;
 }
-// cout <<"processors: ";
-                // for(auto a = processor.begin(); a != processor.end(); ++a){
-                    // cout << *a << " ";
-                // }
-                // cout << endl;
-                // cout <<"position: ";
-                // for(auto a = position.begin(); a != position.end(); ++a){
-                //     cout << a->first << " "<<a->second <<" ";
-                // }
-                // cout << endl;
-                // cout<<position.rbegin()->first << " "<< position.rbegin()->second<<endl;
