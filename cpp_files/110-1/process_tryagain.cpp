@@ -39,7 +39,7 @@ int main(){
         if(zeroindex == C && !outofcore){
             outofcore = true;
             for(auto a = processor.begin(); a != processor.end(); ++a){
-                fartable.push({farposition[*a][everyprocesstimes[*a]+1],   tasktoprocessor[*a]});
+                fartable.push({farposition[*a][everyprocesstimes[*a]+1], tasktoprocessor[*a]});
             }
         }
         if(zeroindex < C){ //init_process exist

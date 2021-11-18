@@ -10,7 +10,9 @@
         "bitset": "cpp",
         "span": "cpp",
         "iterator": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iomanip": "cpp",
+        "cmath": "cpp"
     },
     "git.ignoreLimitWarning": true
 }
