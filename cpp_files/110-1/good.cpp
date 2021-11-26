@@ -1,11 +1,10 @@
-#include<iostream>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <cmath>
 using namespace std;
 long long total = pow(10, 18);
-void recur(long long *vectorbegin, long long *vectorend,long long sum){\
-    
+void recur(long long *vectorbegin, long long *vectorend,long long sum){
     if(vectorend-vectorbegin <= 1){
         if(sum < total){
             total = sum;

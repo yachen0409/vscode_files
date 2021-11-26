@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -10,12 +11,12 @@ void threeSum(vector<int> &num, int sum)
         int ans = 0;
         sort(num.begin(), num.end());
 
-        for (int i = 0;i < num.size() - 2; i++)
+        for (int i = 0; i < num.size() - 2; i++)     //first index
         {
             if (i > 0 && num[i] == num[i - 1])  
                 continue;
-            int j = i + 1;
-            int k = num.size() - 1;
+            int j = i + 1;      //second index
+            int k = num.size() - 1;     //last index
             while (j < k)
             {
                 ans = num[i] + num[j] + num[k];
@@ -25,13 +26,13 @@ void threeSum(vector<int> &num, int sum)
                     ++j;
                     while (j < num.size() && num[j] == num[j - 1])
                         ++j;
-                    --k;
+                        // --k;
                     while (k >= 0 && num[k] == num[k + 1])
                         --k;
                 }
-                else if (ans > sum) 
+                else if (ans > sum)     //means: it need lower sum 
                     --k;
-                else 
+                else                    //means: it need higher sum
                     ++j;
             }
         }

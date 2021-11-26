@@ -20,7 +20,7 @@ int main(){
         cin >> x >> l;
         auto lower = lower_bound(list.begin(), list.end(), x);
         auto upper = upper_bound(list.begin(), list.end(), x*k>l ? l : x*k);
-        for(int j = 1; j <= k && j*x <= l ; j++){
+        for(int j = 1; j <= k  ; j++){
             auto lower_inside = lower_bound(lower, upper, j*x);
             auto upper_inside = lower_bound(lower, upper, (j+1)*x);
             long long temp = j * (upper_inside - lower_inside);

@@ -4,7 +4,7 @@
 using namespace std;
 long long n, count = 0;
 vector<long long> seniority;
-vector <long long int*> position;
+vector <long long int*> position; //store inorder's position
 vector<long long>inorder, postorder;
 long long awk = 0;
 /*Tree building function*/
@@ -12,18 +12,18 @@ void buildTree(long long * inbegin, long long * inend, long long * postbegin, lo
     if(inbegin == inend){
         return;
     }
-    long long* root = position[*postend]; //inorder position
-    long long leftsize = root - inbegin;   
-    long long rightsize = inend - root;
+    long long* root = position[*postend]; //inorder root position by postend position
+    long long leftsize = root - inbegin;   //postorder's left size by inorder
+    long long rightsize = inend - root;     //postorder's right size by inorder
     if(leftsize != 0){
-        long long *leftroot = postbegin + leftsize - 1;
+        long long *leftroot = postbegin + leftsize - 1;     //by postorder
         if (seniority[*leftroot-1] > seniority[*root-1]){
             awk++;
         }
         buildTree(inbegin, root-1, postbegin, postbegin + leftsize - 1);
     }
     if(rightsize!=0){
-        long long *rightroot = postend - 1;
+        long long *rightroot = postend - 1;     //by postorder
         if(seniority[*rightroot-1] > seniority[*root-1]){
             awk++;
         }
