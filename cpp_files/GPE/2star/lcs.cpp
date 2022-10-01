@@ -10,7 +10,7 @@ int main(){
             cout << "0\n";
             continue;
         }
-        vector<vector<long long>> lcs_table;
+        vector<vector <long long> > lcs_table;
         lcs_table.resize(a.size()+1, vector<long long>(b.size()+1, 0));
         for(long long i = 0; i < lcs_table.size(); ++i){
             for(long long j = 0; j < lcs_table[i].size(); ++j){

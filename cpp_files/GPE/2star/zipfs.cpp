@@ -33,7 +33,7 @@ int main(){
         }
         
         bool noans = true;
-        for(auto it = word_times.begin(); it != word_times.end(); ++it){
+        for(map <string, long long>::iterator it = word_times.begin(); it != word_times.end(); ++it){
             if(it->second == num && it->first.size() > 0){
                 cout << it->first << endl;
                 noans = false;

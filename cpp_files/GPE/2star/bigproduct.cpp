@@ -20,7 +20,8 @@ int main(){
     string a, b;
     vector<long long> reverse_num1, reverse_num2, reverse_ans, ans;
     while(cin >> a >> b){
-        reverse_num1.resize(260, 0); reverse_num2.resize(260, 0); reverse_ans.resize(520, 0); ans.resize(520, 0);
+        reverse_num1.clear(); reverse_num2.clear();reverse_ans.clear();
+        reverse_num1.resize(260, 0); reverse_num2.resize(260, 0); reverse_ans.resize(520, 0);
         for(long long i = 0; i < a.size(); ++i){
             reverse_num1[i] = a[a.size()-i-1] - '0';
         }

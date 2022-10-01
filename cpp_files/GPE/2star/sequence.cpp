@@ -60,7 +60,10 @@ int main(){
         ans.resize(55, 0);
         solve(seq);
         for(long long i = 0; i < num; ++i){
-            cout << ans[i] << " ";
+            if(i){            //超白痴
+                cout << " ";
+            }
+            cout << ans[i];
         }
         cout << "\n";
     }

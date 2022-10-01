@@ -23,6 +23,8 @@ vector<long long> build(string &str){
     return lps;
 }
 int main(){
+    cin.tie();
+    cin.sync_with_stdio();
     string str;
     while(cin >> str){
         if (str == ".") break;

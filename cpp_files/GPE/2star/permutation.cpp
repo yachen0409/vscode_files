@@ -14,8 +14,8 @@ int main(){
         for(long long i = 0; i < b.size(); ++i){
             b_freq[b[i]]++;
         }
-        for(auto it_a = a_freq.begin(); it_a != a_freq.end(); ++it_a){
-            auto it_b = b_freq.find(it_a->first);
+        for(map<char, long long>::iterator it_a = a_freq.begin(); it_a != a_freq.end(); ++it_a){
+            map<char, long long>::iterator it_b = b_freq.find(it_a->first);
             if(it_b != b_freq.end()){
                 long long times = min(it_a->second, it_b->second);
                 for(long long i = 0; i < times; ++i){
