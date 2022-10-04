@@ -4,7 +4,7 @@ using namespace std;
 long long calculate(long long n, long long capacity, vector<long long>milk){
     long long temp_sum = 0, temp_count = 1;
     for(long long i = 0; i < n; ++i){
-        if(milk[i] > capacity){
+        if(milk[i] > capacity){    //!注意
             return n;
         }
         temp_sum += milk[i];
@@ -16,6 +16,7 @@ long long calculate(long long n, long long capacity, vector<long long>milk){
     return temp_count;
 
 }
+
 int main(){
     long long n, m;
     while(cin >> n >> m){
@@ -33,7 +34,7 @@ int main(){
             // long long temp_sum = 0, temp_count = 0;
             long long count = calculate(n, mid, milk);
             // cout << "count = "<<count << endl;
-            if(count <= m){
+            if(count <= m){    //!注意有等於
                 sum_milk = mid - 1;
             }
             else if(count > m){

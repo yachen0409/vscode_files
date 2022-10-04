@@ -3,17 +3,7 @@
 using namespace std;
 vector<char>inorder;
 vector<char>preorder;
-// A utility function to search x in arr[] of size n
-// int search(vector<char> arr, char x, int n)
-// {
-//     for (int i = 0; i < n; i++)
-//         if (arr[i] == x)
-//             return i;
-//     return -1;
-// }
- 
-// Prints postorder traversal from given
-// inorder and preorder traversals
+
 void printPostOrder(long long pre_left, long long pre_right, long long in_left, long long in_right)
 {   
     long long parent_pos, leftsize, rightsize;
@@ -44,7 +34,6 @@ void printPostOrder(long long pre_left, long long pre_right, long long in_left, 
     
 }
  
-// Driver program to test above functions
 int main()
 {
     long long n;
@@ -52,19 +41,15 @@ int main()
     while(n--){
         long long size;
         cin >> size;
-        // cout << size << endl;
         
         inorder.clear(); preorder.clear();
         inorder.resize(size); preorder.resize(size); 
-        // vector<long long>preorder(size, 0);
+
         for(long long i = 0; i < size; ++i){
             cin >> preorder[i];
-            // cout << "i=" << i << endl;
         }
-        
         for(long long i = 0; i < size; ++i){
             cin >> inorder[i];
-            // cout << "j=" << i << endl;
         }
         // for(long long i = 0; i < size; ++i){
         //     cout << preorder[i] << " ";

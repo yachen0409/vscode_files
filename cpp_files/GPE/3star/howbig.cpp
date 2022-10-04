@@ -17,7 +17,7 @@ double get_horizontal_dis(long long circle1, long long circle2){  //get horizont
 }
 void solve(){
     // long long count = 1;
-    ans = MAXFLOAT; //記得要initialize
+    ans = MAXFLOAT; //!記得要initialize
     do{
         double temp = -1;   //記得要initialize
         record_x[1] = circle_radius[1];   //第一個x座標必定是第一個circle的radius
@@ -62,7 +62,7 @@ int main(){
         for(long long i = 1; i < circle_radius.size(); ++i){
             cin >> circle_radius[i];
         }
-        sort(circle_radius.begin()+1, circle_radius.end());
+        sort(circle_radius.begin()+1, circle_radius.end()); //!記得先sort
         solve();
         cout << fixed << setprecision(3) << ans << endl;
 

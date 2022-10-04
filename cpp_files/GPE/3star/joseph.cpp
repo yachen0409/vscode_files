@@ -27,8 +27,8 @@ int main(){
         long long kill_pos = 0;
         for(long long i = 2; i <= n; ++i){
             //公式
-            //J(i+1) = (J(i)+q)%n
-            //q=每數q個人殺1次, n=一桌n個人
+            //! J(i+1) = (J(i)+q)%n
+            //! q=每數q個人殺1次, n=一桌n個人
             kill_pos = (kill_pos+prime[n-i])%i;
         }
         //被殺的最後一個人的下個位置->活下來
